@@ -11,7 +11,14 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-
+// @Summary      Get a Todo by ID
+// @Description  Retrieves a todo item by its unique identifier.
+// @Tags         todos
+// @Param        id     path      string         true  "Todo ID"
+// @Success      200    {object}  models.Todo
+// @Failure      400    {string}  string         "Bad request"
+// @Failure      404    {string}  string         "Not found"
+// @Router       /todos/{id} [get]
 func GetTodoById(c *gin.Context) {
 	idParam := c.Param("id")
 	objectId, err := primitive.ObjectIDFromHex(idParam)

@@ -10,7 +10,18 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+type UpdateTodoDto struct { Completed bool `json:"completed"` } 
 
+// @Summary Update todo
+// @Description Update a todo by it's id
+// @Tags todos
+// @Accept json
+// @Produce json
+// @Param todo body UpdateTodoDto true "Is completed"
+// @Param id path string true "Todo ID"
+// @Success 201 {object} models.Todo
+// @Failure 400 {string} string "Bad Request"
+// @Router /todos/{id} [patch]
 func UpdateTodoById(c *gin.Context) {
 	idParam := c.Param("id")
 	objectId, err := primitive.ObjectIDFromHex(idParam)

@@ -7,6 +7,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+
+	_ "learn-go/docs"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 
@@ -20,6 +25,9 @@ func main () {
 	mongo.InitMongo()
 
 	router := gin.Default()
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
 	router.GET("/todos", services.GetTodos)
 	router.GET("/todos/:id", services.GetTodoById)
 	router.PATCH("/todos/:id", services.UpdateTodoById)

@@ -9,7 +9,11 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-
+// @Summary      Get all todos
+// @Description  Retrieves all todo items from te db.
+// @Tags         todos
+// @Success      200    {array}  models.Todo
+// @Router       /todos [get]
 func GetTodos(context *gin.Context) {
 	cursor, err := mongo.TodoCollection.Find(context, bson.M{})
 	if err != nil {

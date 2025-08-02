@@ -9,6 +9,15 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+// @Summary Add a new Todo
+// @Description Create a new todo item
+// @Tags todos
+// @Accept json
+// @Produce json
+// @Param todo body models.Todo true "Todo Item"
+// @Success 201 {object} models.Todo
+// @Failure 400 {string} string "Bad Request"
+// @Router /todos [post]
 func AddTodo(context *gin.Context) {
 	var newTodo struct {
 		Item      string             `bson:"item" json:"item"`
